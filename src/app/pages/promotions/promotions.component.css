@@ -34,8 +34,8 @@
 }
 
 .wheel {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
@@ -168,8 +168,8 @@
   border-bottom: 1px solid #ecf0f1;
 }
 
-.leaderboard-table tbody tr:hover {
-  background: #ff0400;
+.leaderboard-table tr:hover {
+  background: #f8f9fa;
 }
 
 .top-three {
@@ -206,7 +206,7 @@
 
 .login-name {
   font-family: monospace;
-  color: #0e0e0e;
+  color: #7f8c8d;
 }
 
 .week-badge {
