@@ -1,0 +1,49 @@
+<div class="posts-container">
+  <h1 class="page-title">ყველა პოსტი</h1>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>იტვირთება...</p>
+  </div>
+
+  <!-- Posts Table -->
+  <div *ngIf="!loading" class="table-container">
+    <table class="posts-table">
+      <thead>
+        <tr>
+          <th>მომხმარებელი</th>
+          <th>პოსტის სათაური</th>
+          <th>მოქმედება</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts" class="table-row">
+          <td>{{ getUserName(post.userId) }}</td>
+          <td>{{ post.title }}</td>
+          <td>
+            <button 
+              (click)="openPostDetail(post)" 
+              class="btn btn-detail">
+              დეტალურად
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Post Detail Popup -->
+<div *ngIf="selectedPost" class="modal-overlay" (click)="closePostDetail()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ selectedPost.title }}</h2>
+      <button class="close-btn" (click)="closePostDetail()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="post-author">ავტორი: {{ getUserName(selectedPost.userId) }}</p>
+      <p class="post-description">{{ selectedPost.body }}</p>
+    </div>
+  </div>
+</div>

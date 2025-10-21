@@ -1,0 +1,253 @@
+.promotions-container {
+  width: 100%;
+}
+
+.page-title {
+  color: #2c3e50;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.section-title {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Wheel Styles */
+.wheel-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 2rem;
+}
+
+.wheel {
+  width: 300px;
+  height: 300px;
+  transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: #e74c3c;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.wheel-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wheel-input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  width: 250px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.wheel-input:focus {
+  border-color: #667eea;
+}
+
+.spin-btn {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.spin-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.spin-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fee;
+  color: #c0392b;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #d5f4e6;
+  color: #27ae60;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Leaderboard Styles */
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.75rem 1.5rem;
+  background: #ecf0f1;
+  color: #2c3e50;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: #d5dbdb;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+}
+
+.leaderboard-table-container {
+  overflow-x: auto;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-table thead {
+  background: #2c3e50;
+  color: white;
+}
+
+.leaderboard-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.leaderboard-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.leaderboard-table tbody tr:hover {
+  background: #ff0400;
+}
+
+.top-three {
+  background: #fff9e6;
+}
+
+.place-cell {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.place-badge {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 50%;
+  background: #95a5a6;
+  color: white;
+}
+
+.place-badge.gold {
+  background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+}
+
+.place-badge.silver {
+  background: linear-gradient(135deg, #95a5a6 0%, #bdc3c7 100%);
+}
+
+.place-badge.bronze {
+  background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
+}
+
+.login-name {
+  font-family: monospace;
+  color: #0e0e0e;
+}
+
+.week-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: #3498db;
+  color: white;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 1.5rem;
+  }
+
+  .wheel-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .wheel {
+    width: 250px;
+    height: 250px;
+  }
+
+  .wheel-input {
+    width: 100%;
+  }
+
+  .leaderboard-table {
+    font-size: 0.875rem;
+  }
+
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}

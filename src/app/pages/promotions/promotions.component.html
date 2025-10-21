@@ -1,0 +1,101 @@
+<div class="promotions-container">
+  <h1 class="page-title">აქციები</h1>
+
+  <!-- Wheel Section -->
+  <div class="section wheel-section">
+    <h2 class="section-title">იღბლიანი ბორბალი</h2>
+    
+    <div class="wheel-container">
+      <svg class="wheel" [style.transform]="'rotate(' + rotation + 'deg)'">
+        <circle cx="150" cy="150" r="148" fill="none" stroke="#2c3e50" stroke-width="2"/>
+        <g *ngFor="let sector of sectors; let i = index">
+          <path 
+            [attr.d]="getSectorPath(i)" 
+            [attr.fill]="getSectorColor(i)"
+            stroke="#fff"
+            stroke-width="2"/>
+          <text 
+            [attr.x]="getSectorTextX(i)"
+            [attr.y]="getSectorTextY(i)"
+            text-anchor="middle"
+            fill="white"
+            font-size="20"
+            font-weight="bold">
+            {{ i + 1 }}
+          </text>
+        </g>
+        <circle cx="150" cy="150" r="20" fill="#fff" stroke="#2c3e50" stroke-width="2"/>
+      </svg>
+
+      <div class="wheel-pointer">▼</div>
+    </div>
+
+    <div class="wheel-controls">
+      <input 
+        type="number" 
+        [(ngModel)]="targetSector"
+        min="1"
+        max="10"
+        placeholder="შეიყვანეთ ნომერი (1-10)"
+        class="wheel-input">
+      <button 
+        (click)="spinWheel()"
+        [disabled]="isSpinning"
+        class="spin-btn">
+        {{ isSpinning ? 'ტრიალებს...' : 'დაატრიალე' }}
+      </button>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+  </div>
+
+  <!-- Leaderboard Section -->
+  <div class="section leaderboard-section">
+    <h2 class="section-title">ლიდერბორდი</h2>
+
+    <div class="filter-buttons">
+      <button 
+        *ngFor="let filter of weekFilters"
+        (click)="filterLeaderboard(filter)"
+        [class.active]="activeFilter === filter"
+        class="filter-btn">
+        {{ filter }}
+      </button>
+    </div>
+
+    <div class="leaderboard-table-container">
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>პოზიცია</th>
+            <th>Customer ID</th>
+            <th>Login Name</th>
+            <th>კვირა</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of filteredLeaderboard; let i = index" 
+              [class.top-three]="i < 3">
+            <td class="place-cell">
+              <span class="place-badge" [class.gold]="i === 0" 
+                    [class.silver]="i === 1" [class.bronze]="i === 2">
+                {{ entry.place }}
+              </span>
+            </td>
+            <td>{{ entry.customerId }}</td>
+            <td class="login-name">{{ entry.loginName }}</td>
+            <td>
+              <span class="week-badge">{{ entry.week }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="users-container">
+  <h1 class="page-title">მომხმარებლები</h1>
+  
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm"
+      (input)="onSearch()"
+      placeholder="ძებნა სახელით, გვარით ან მეილით..."
+      class="search-input">
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>იტვირთება...</p>
+  </div>
+
+  <!-- Users Table -->
+  <div *ngIf="!loading" class="table-container">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>სახელი</th>
+          <th>გვარი</th>
+          <th>ტელეფონი</th>
+          <th>მეილი</th>
+          <th>კომპანია</th>
+          <th>მოქმედებები</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsers" class="table-row">
+          <td>{{ getFirstName(user.name) }}</td>
+          <td>{{ getLastName(user.name) }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.company.name }}</td>
+          <td class="actions-cell">
+            <button 
+              (click)="viewPosts(user.id)" 
+              class="btn btn-posts">
+              პოსტები
+            </button>
+            <button 
+              (click)="viewTodos(user.id)" 
+              class="btn btn-todos">
+              TODO List
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- No Results -->
+    <div *ngIf="filteredUsers.length === 0" class="no-results">
+      <p>ვერ მოიძებნა მომხმარებლები</p>
+    </div>
+  </div>
+</div>

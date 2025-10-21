@@ -1,0 +1,47 @@
+<div class="user-posts-container">
+  <button class="back-btn" (click)="goBack()">
+    ← უკან დაბრუნება
+  </button>
+
+  <h1 class="page-title" *ngIf="user">
+    {{ user.name }}-ის პოსტები
+  </h1>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>იტვირთება...</p>
+  </div>
+
+  <!-- Posts Cards -->
+  <div *ngIf="!loading" class="posts-grid">
+    <div *ngFor="let post of posts" class="post-card">
+      <h3 class="post-title">{{ post.title }}</h3>
+      <p class="post-description">{{ post.body }}</p>
+      <button 
+        (click)="openPostDetail(post)" 
+        class="btn-detail">
+        დეტალურად
+      </button>
+    </div>
+  </div>
+
+  <!-- No Posts -->
+  <div *ngIf="!loading && posts.length === 0" class="no-posts">
+    <p>პოსტები ვერ მოიძებნა</p>
+  </div>
+</div>
+
+<!-- Post Detail Modal -->
+<div *ngIf="selectedPost" class="modal-overlay" (click)="closePostDetail()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ selectedPost.title }}</h2>
+      <button class="close-btn" (click)="closePostDetail()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="post-author" *ngIf="user">ავტორი: {{ user.name }}</p>
+      <p class="post-text">{{ selectedPost.body }}</p>
+    </div>
+  </div>
+</div>

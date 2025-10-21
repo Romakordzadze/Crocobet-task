@@ -1,0 +1,36 @@
+<div class="todos-container">
+  <button class="back-btn" (click)="goBack()">
+    ← უკან დაბრუნება
+  </button>
+
+  <h1 class="page-title" *ngIf="user">
+    {{ user.name }}-ის TODO List
+  </h1>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>იტვირთება...</p>
+  </div>
+
+  <!-- Todos List -->
+  <div *ngIf="!loading" class="todos-list">
+    <div 
+      *ngFor="let todo of todos" 
+      class="todo-item"
+      [class.completed]="todo.completed">
+      <div class="todo-checkbox">
+        <span *ngIf="todo.completed">✓</span>
+      </div>
+      <div class="todo-content">
+        <p class="todo-title">{{ todo.title }}</p>
+        <span class="todo-status" *ngIf="todo.completed">შესრულებული</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Todos -->
+  <div *ngIf="!loading && todos.length === 0" class="no-todos">
+    <p>TODO ჩანაწერები ვერ მოიძებნა</p>
+  </div>
+</div>
